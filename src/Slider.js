@@ -8,7 +8,9 @@ export default function Slider({
   suffix,
   isDecimal,
   onChange,
-  step
+  step,
+  inputStyle,
+  divStyle
 }) {
   const replaceDot = parseFloat(value)
     .toFixed(2)
@@ -17,16 +19,21 @@ export default function Slider({
     .replace(" ", "")
 
   return (
-    <div>
-      <span>{`${label}: ${isDecimal ? replaceDot : value}${suffix} `}</span>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={value}
-        onChange={onChange}
-        step={step}
-      ></input>
+    <div style={divStyle}>
+      <span style={{ textAlign: "left" }}>{`${label}: ${
+        isDecimal ? replaceDot : value
+      }${suffix} `}</span>
+      <div>
+        <input
+          type="range"
+          style={{ inputStyle }}
+          min={min}
+          max={max}
+          value={value}
+          onChange={onChange}
+          step={step}
+        ></input>
+      </div>
     </div>
   )
 }

@@ -13,17 +13,24 @@ export default function ImcCalculator() {
   }
   useEffect(() => {
     const calcImc = () => {
-      setImcValue((weight / (height * height)).toFixed(1))
+      setImcValue(
+        (weight / (height * height))
+          .toFixed(1)
+          .toString()
+          .replace(".", ",")
+          .replace(" ", "")
+      )
     }
     calcImc()
   }, [height, weight])
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <Slider
         min={40}
         max={180}
         value={weight}
         label={"Peso"}
+        divStyle={{ marginTop: "1rem" }}
         step={1}
         suffix={"kg"}
         onChange={onWeightChange}
@@ -31,14 +38,18 @@ export default function ImcCalculator() {
       <Slider
         min={1.5}
         max={2.0}
+        divStyle={{ marginTop: "1rem" }}
         step={0.01}
         value={height}
+        inputStyle={{ width: "200px" }}
         label={"Altura"}
         suffix={"m"}
         onChange={onHeightChange}
         isDecimal
       />
-      <span>IMC: {imcValue}</span>
+      <div style={{ marginTop: "1rem" }}>
+        <span style={{ textAlign: "left" }}>IMC: {imcValue}</span>
+      </div>
     </div>
   )
 }
