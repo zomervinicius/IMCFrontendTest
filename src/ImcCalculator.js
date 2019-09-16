@@ -24,6 +24,13 @@ export default function ImcCalculator() {
     }
     calcImc()
   }, [height, formattedImcValue, weight])
+  const replaceDotForComma = value => {
+    return parseFloat(value)
+      .toFixed(2)
+      .toString()
+      .replace(".", ",")
+      .replace(" ", "")
+  }
   return (
     <div style={{ width: "320px", margin: "auto" }}>
       <Slider
@@ -44,10 +51,10 @@ export default function ImcCalculator() {
         step={0.01}
         value={height}
         inputStyle={{ width: "100%", marginTop: "0.7rem" }}
+        formatValue={replaceDotForComma}
         label={"Altura"}
         suffix={"m"}
         onChange={onHeightChange}
-        isDecimal
       />
       <div style={{ marginTop: "1rem" }}>
         <span style={{ textAlign: "left" }}>IMC: {imcValue}</span>

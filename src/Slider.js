@@ -10,17 +10,14 @@ export default function Slider({
   onChange,
   step,
   inputStyle,
-  divStyle
+  divStyle,
+  formatValue
 }) {
-  const replaceDot = parseFloat(value)
-    .toFixed(2)
-    .toString()
-    .replace(".", ",")
-    .replace(" ", "")
-
   return (
     <div style={divStyle}>
-      <span>{`${label}: ${isDecimal ? replaceDot : value}${suffix} `}</span>
+      <span>{`${label}: ${
+        !!formatValue ? formatValue(value) : value
+      }${suffix} `}</span>
       <div>
         <input
           type="range"
