@@ -4,7 +4,14 @@ import Slider from "./Slider"
 export default function ImcCalculator() {
   const [weight, setWeight] = useState(60)
   const [height, setHeight] = useState(1.6)
-  const [imcValue, setImcValue] = useState(0)
+  const imcFormula = weight / (height * height)
+  const formattedImcValue = imcFormula
+    .toFixed(1)
+    .toString()
+    .replace(".", ",")
+    .replace(" ", "")
+
+  const [imcValue, setImcValue] = useState(formattedImcValue)
   const onWeightChange = e => {
     setWeight(e.target.value)
   }
@@ -13,22 +20,17 @@ export default function ImcCalculator() {
   }
   useEffect(() => {
     const calcImc = () => {
-      setImcValue(
-        (weight / (height * height))
-          .toFixed(1)
-          .toString()
-          .replace(".", ",")
-          .replace(" ", "")
-      )
+      setImcValue(formattedImcValue)
     }
     calcImc()
-  }, [height, weight])
+  }, [height, formattedImcValue, weight])
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ width: "320px", margin: "auto" }}>
       <Slider
         min={40}
         max={180}
         value={weight}
+        inputStyle={{ width: "100%", marginTop: "0.7rem" }}
         label={"Peso"}
         divStyle={{ marginTop: "1rem" }}
         step={1}
@@ -41,7 +43,7 @@ export default function ImcCalculator() {
         divStyle={{ marginTop: "1rem" }}
         step={0.01}
         value={height}
-        inputStyle={{ width: "200px" }}
+        inputStyle={{ width: "100%", marginTop: "0.7rem" }}
         label={"Altura"}
         suffix={"m"}
         onChange={onHeightChange}

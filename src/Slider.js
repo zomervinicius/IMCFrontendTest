@@ -20,13 +20,11 @@ export default function Slider({
 
   return (
     <div style={divStyle}>
-      <span style={{ textAlign: "left" }}>{`${label}: ${
-        isDecimal ? replaceDot : value
-      }${suffix} `}</span>
+      <span>{`${label}: ${isDecimal ? replaceDot : value}${suffix} `}</span>
       <div>
         <input
           type="range"
-          style={{ inputStyle }}
+          style={inputStyle}
           min={min}
           max={max}
           value={value}
