@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import Slider from "./Slider"
+import ImcForm from "./ImcForm"
+import ImcResult from "./ImcResult"
 
 export default function ImcCalculator() {
   const [weight, setWeight] = useState(60)
@@ -33,32 +34,16 @@ export default function ImcCalculator() {
   }
   return (
     <div style={{ width: "320px", margin: "auto" }}>
-      <Slider
-        min={40}
-        max={180}
-        value={weight}
-        inputStyle={{ width: "100%", marginTop: "0.7rem" }}
-        label={"Peso"}
-        divStyle={{ marginTop: "1rem" }}
-        step={1}
-        suffix={"kg"}
-        onChange={onWeightChange}
+      <ImcForm
+        {...{
+          weight,
+          onWeightChange,
+          height,
+          replaceDotForComma,
+          onHeightChange
+        }}
       />
-      <Slider
-        min={1.5}
-        max={2.0}
-        divStyle={{ marginTop: "1rem" }}
-        step={0.01}
-        value={height}
-        inputStyle={{ width: "100%", marginTop: "0.7rem" }}
-        formatValue={replaceDotForComma}
-        label={"Altura"}
-        suffix={"m"}
-        onChange={onHeightChange}
-      />
-      <div style={{ marginTop: "1rem" }}>
-        <span style={{ textAlign: "left" }}>IMC: {imcValue}</span>
-      </div>
+      <ImcResult {...{ imcValue }} />
     </div>
   )
 }

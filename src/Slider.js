@@ -22,11 +22,13 @@ export default function Slider({
         <input
           type="range"
           style={inputStyle}
-          min={min}
-          max={max}
-          value={value}
-          onChange={onChange}
-          step={step}
+          {...{
+            min,
+            max,
+            value,
+            onChange,
+            step
+          }}
         ></input>
       </div>
     </div>
