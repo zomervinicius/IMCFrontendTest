@@ -25,13 +25,7 @@ export default function ImcCalculator() {
     }
     calcImc()
   }, [height, formattedImcValue, weight])
-  const replaceDotForComma = value => {
-    return parseFloat(value)
-      .toFixed(2)
-      .toString()
-      .replace(".", ",")
-      .replace(" ", "")
-  }
+
   return (
     <div style={{ width: "320px", margin: "auto" }}>
       <ImcForm
@@ -39,7 +33,6 @@ export default function ImcCalculator() {
           weight,
           onWeightChange,
           height,
-          replaceDotForComma,
           onHeightChange
         }}
       />

@@ -5,9 +5,15 @@ export default function ImcForm({
   weight,
   onWeightChange,
   height,
-  replaceDotForComma,
   onHeightChange
 }) {
+  const replaceDotForComma = value => {
+    return parseFloat(value)
+      .toFixed(2)
+      .toString()
+      .replace(".", ",")
+      .replace(" ", "")
+  }
   return (
     <div>
       <Slider
